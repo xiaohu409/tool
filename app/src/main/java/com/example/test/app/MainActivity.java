@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 public class MainActivity extends ActionBarActivity implements View.OnClickListener{
 
-    EditText editText;
+    private EditText editText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,19 +26,21 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        StringBuffer stringBuffer = new StringBuffer(editText.getText().toString());
-        int i = stringBuffer.length() / 2;
-        Log.e("length",":" + stringBuffer.length());
-        Log.e("i","" + i);
-        for (int j = 1; j <= i; j++) {
-            int index = 3 * j - 1;
-            Log.e("index",":" + index);
-            stringBuffer.insert(index,'*');
-        }
+        String str = editText.getText().toString();
         TextView textView = (TextView)findViewById(R.id.textView);
-        textView.setText(stringBuffer);
+        textView.setText(operateString(str,'*'));
     }
 
+    private String operateString(String valStr, char c) {
+        StringBuilder strBuf = new StringBuilder(valStr);
+        int i = strBuf.length() / 2;
+        int index;
+        for (int j = 1; j <= i; j++) {
+            index = 3 * j - 1;
+            strBuf.insert(index, c);
+        }
+        return strBuf.toString();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
