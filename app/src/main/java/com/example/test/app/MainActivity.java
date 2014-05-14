@@ -2,7 +2,6 @@ package com.example.test.app;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,18 +27,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     public void onClick(View v) {
         String str = editText.getText().toString();
         TextView textView = (TextView)findViewById(R.id.textView);
-        textView.setText(operateString(str,'*'));
-    }
-
-    private String operateString(String valStr, char c) {
-        StringBuilder strBuf = new StringBuilder(valStr);
-        int i = strBuf.length() / 2;
-        int index;
-        for (int j = 1; j <= i; j++) {
-            index = 3 * j - 1;
-            strBuf.insert(index, c);
-        }
-        return strBuf.toString();
+        textView.setText(Tools.operateString(str,'*'));
     }
 
     @Override
